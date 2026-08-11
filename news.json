@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T18:03+09:00",
+  "updated_at": "2026-08-11T18:54+09:00",
   "edition": "AUTO v1",
   "stories": [
     {
@@ -34,30 +34,6 @@
       "summary": "公式発表。詳細は出典を確認してください。",
       "published": "Thu, 16 Jul 2026 15:30:00 +0900",
       "url": "https://www.yamato-hd.co.jp/investors/pdf/info_260716_1.pdf",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "delivery-ヤマトホールディングス-3",
-      "category": "DELIVERY",
-      "source": "ヤマトホールディングス",
-      "title": "2026年6月度小口貨物取扱実績",
-      "summary": "公式発表。詳細は出典を確認してください。",
-      "published": "Mon, 06 Jul 2026 15:35:00 +0900",
-      "url": "https://www.yamato-hd.co.jp/news/2026/newsrelease_20260706_1.html",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "delivery-ヤマトホールディングス-4",
-      "category": "DELIVERY",
-      "source": "ヤマトホールディングス",
-      "title": "第161期事業のご報告（株主通信）を掲載しました",
-      "summary": "公式発表。詳細は出典を確認してください。",
-      "published": "Fri, 19 Jun 2026 17:10:00 +0900",
-      "url": "https://www.yamato-hd.co.jp/investors/library/report/",
       "importance": "要確認",
       "relation": "要確認",
       "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
@@ -99,30 +75,6 @@
       "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
     },
     {
-      "id": "news-日本銀行-3",
-      "category": "NEWS",
-      "source": "日本銀行",
-      "title": "コール市場残高（7月）",
-      "summary": "公式発表。詳細は出典を確認してください。",
-      "published": "Fri, 07 Aug 2026 15:00:00 +0900",
-      "url": "http://www.boj.or.jp/statistics/market/short/call/call.xlsx",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "news-日本銀行-4",
-      "category": "NEWS",
-      "source": "日本銀行",
-      "title": "消費活動指数",
-      "summary": "公式発表。詳細は出典を確認してください。",
-      "published": "Fri, 07 Aug 2026 14:00:00 +0900",
-      "url": "http://www.boj.or.jp/research/research_data/cai/index.htm",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
       "id": "ai-OpenAI-0",
       "category": "AI",
       "source": "OpenAI",
@@ -142,42 +94,6 @@
       "summary": "Model ML uses GPT-5.6 Sol to carry finance work from research and analysis through editable, traceable PowerPoint decks and Excel workbooks.",
       "published": "Mon, 10 Aug 2026 12:00:00 GMT",
       "url": "https://openai.com/index/model-ml",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "ai-OpenAI-2",
-      "category": "AI",
-      "source": "OpenAI",
-      "title": "What building an AI-native finance function taught me",
-      "summary": "OpenAI CFO Sarah Friar shares five lessons for building an AI-native finance function, from automated forecasting to stronger controls and AI ROI.",
-      "published": "Mon, 10 Aug 2026 17:00:00 GMT",
-      "url": "https://openai.com/index/building-an-ai-native-finance-function",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "ai-OpenAI-3",
-      "category": "AI",
-      "source": "OpenAI",
-      "title": "Expanding Daybreak as the Cyber Defense Window Narrows",
-      "summary": "Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.",
-      "published": "Mon, 10 Aug 2026 10:00:00 GMT",
-      "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows",
-      "importance": "要確認",
-      "relation": "要確認",
-      "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
-    },
-    {
-      "id": "ai-OpenAI-4",
-      "category": "AI",
-      "source": "OpenAI",
-      "title": "Putting frontier cyber models in more trusted hands",
-      "summary": "Approved Daybreak partners can use OpenAI’s frontier cyber models to deliver authorized, governed cybersecurity services to customers.",
-      "published": "Mon, 10 Aug 2026 10:00:00 GMT",
-      "url": "https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands",
       "importance": "要確認",
       "relation": "要確認",
       "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
