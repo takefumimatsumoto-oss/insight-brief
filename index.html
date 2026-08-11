@@ -3,235 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4f2eb">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Insight Brief</title>
 <style>
-:root{
-  --bg:#f4f2eb; --card:#fffdf8; --ink:#202428; --muted:#6b7379; --line:#ddd9cf;
-  --accent:#244a5e; --accent2:#587b76; --soft:#eaf0ec; --warm:#f3eadf;
-  --shadow:0 8px 24px rgba(20,28,36,.055)
-}
-*{box-sizing:border-box}
-html{background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif;line-height:1.55}
-button,a{font:inherit}
-.app{max-width:760px;margin:0 auto;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(84px + env(safe-area-inset-bottom))}
-header{padding:25px 18px 10px}
-.brand{font-size:12px;letter-spacing:.17em;font-weight:800;color:var(--muted)}
-.date{font-size:27px;font-weight:850;margin-top:3px}
-.sub{font-size:13px;color:var(--muted);margin-top:2px}
-.summary{margin:8px 16px 14px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
-.summary h2{margin:2px 0 5px;font-size:22px}
-.summary p{margin:0;color:var(--muted);font-size:14px}
-.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
-.pill{font-size:11px;padding:5px 8px;border-radius:999px;background:var(--soft);color:#39514c;font-weight:750}
-.budget{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-.budgetrow{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}
-.bar{height:8px;background:#e6e3dc;border-radius:999px;overflow:hidden}
-.bar span{display:block;height:100%;width:80%;background:var(--accent2)}
-.budgetnote{font-size:12px;color:var(--muted);margin-top:7px}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{white-space:nowrap;border:1px solid var(--line);background:var(--card);padding:9px 12px;border-radius:999px;font-size:12px;font-weight:750;color:var(--muted)}
-.tab.active{background:var(--accent);color:white;border-color:var(--accent)}
-.sectionTitle{padding:2px 18px 8px;font-size:13px;font-weight:800;color:var(--muted)}
-.cards{padding:0 14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:11px;box-shadow:var(--shadow);cursor:pointer}
-.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.tag{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.02em}
-.read{font-size:11px;color:var(--muted)}
-.card h3{font-size:17px;line-height:1.45;margin:8px 0 7px}
-.reason{font-size:12px;color:var(--muted);background:#f3f0e9;padding:9px 10px;border-radius:11px}
-.metrics{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.metric{font-size:11px;border:1px solid var(--line);border-radius:8px;padding:4px 6px;color:var(--muted)}
-.endcard{margin:18px 16px;background:#e9efe9;border:1px solid #d1ddd3;border-radius:18px;padding:17px;text-align:center}
-.endcard b{display:block;font-size:16px;margin-bottom:5px}
-.endcard span{font-size:12px;color:var(--muted)}
-.view{display:none}.view.active{display:block}
-.back{border:0;background:transparent;padding:15px 18px;color:var(--accent);font-weight:800}
-.detail{margin:0 16px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
-.detail h1{font-size:23px;line-height:1.45;margin:8px 0 12px}
-.facts{display:grid;gap:9px;margin-top:15px}
-.fact{background:#f5f2eb;border-radius:14px;padding:12px;font-size:14px}
-.fact b{display:block;font-size:12px;color:var(--accent);margin-bottom:4px}
-.timelineTitle{font-size:13px;font-weight:850;margin-top:18px;margin-bottom:8px}
-.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-.timebox{background:var(--soft);border-radius:12px;padding:8px;text-align:center;font-size:10px;color:var(--muted)}
-.timebox strong{display:block;font-size:17px;color:var(--ink);margin-top:4px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
-.btn{border:0;border-radius:13px;padding:12px;font-weight:850}
-.primary{background:var(--accent);color:white}
-.secondary{background:var(--soft);color:#39514c}
-.savebtn{width:100%;margin-top:8px;border:1px solid var(--line);background:#fffaf1;color:var(--accent);border-radius:13px;padding:11px;font-weight:850}
-.saved,.tracked{background:#dfece3!important;color:#355947!important}
-.source{display:block;margin-top:10px;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--accent);font-size:13px;font-weight:800;background:white}
-.source small{display:block;color:var(--muted);font-weight:500;margin-top:2px}
-.chatbox{display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
-.prompt{background:#edf1ef;border-radius:12px;padding:10px 11px;font-size:13px;margin-bottom:7px}
-.note{font-size:12px;color:var(--muted)}
-.empty{margin:0 16px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:18px;text-align:center;color:var(--muted);font-size:13px}
-.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(250,248,242,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:10}
-.nav{border:0;background:transparent;padding:7px 2px;color:var(--muted);font-size:11px;font-weight:750}
-.nav strong{display:block;font-size:19px;line-height:1.1;margin-bottom:2px}
-.nav.active{color:var(--accent)}
-.small{font-size:11px;color:var(--muted)}
-@media(max-width:420px){.timeline{grid-template-columns:repeat(2,1fr)}}
+:root{--navy:#102a43;--ink:#17212b;--muted:#697682;--line:#dfe4e8;--bg:#fff;--soft:#f5f7f8;--red:#a83333}
+*{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;line-height:1.55}
+button,a{font:inherit}.app{max-width:820px;margin:auto;padding-bottom:78px}
+.mast{border-bottom:1px solid var(--line);padding:18px 17px 12px}.mastTop{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.logo{font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:29px;letter-spacing:-.03em;color:var(--navy)}
+.date{font-size:11px;color:var(--muted);text-align:right}.tagline{font-size:11px;color:var(--muted);margin-top:2px}
+.navline{display:flex;gap:18px;overflow:auto;padding:10px 17px;border-bottom:1px solid var(--line);white-space:nowrap;scrollbar-width:none}.navline::-webkit-scrollbar{display:none}
+.cat{border:0;background:none;padding:0;font-size:12px;font-weight:800;color:#53606b}.cat.active{color:var(--navy);text-decoration:underline;text-underline-offset:5px}
+.edition{padding:13px 17px 8px;display:flex;justify-content:space-between;align-items:center}.edition b{font-size:12px;letter-spacing:.08em}.edition span{font-size:11px;color:var(--muted)}
+.hero{padding:0 17px 17px;border-bottom:7px solid var(--soft)}.heroLabel{font-size:10px;font-weight:900;color:var(--red);letter-spacing:.12em;margin-bottom:6px}
+.hero h1{font-family:Georgia,"Times New Roman","Yu Mincho",serif;font-size:29px;line-height:1.28;margin:0 0 9px;letter-spacing:-.02em}
+.hero p{font-size:14px;color:#4d5964;margin:0 0 10px}.meta{font-size:11px;color:var(--muted);display:flex;gap:9px;flex-wrap:wrap}
+.section{padding:17px}.sectionHead{border-top:3px solid var(--navy);padding-top:7px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.sectionHead h2{font-size:14px;margin:0;letter-spacing:.06em}.sectionHead span{font-size:10px;color:var(--muted)}
+.story{padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}.story:last-child{border-bottom:0}.storyCat{font-size:10px;color:var(--red);font-weight:900;letter-spacing:.06em}
+.story h3{font-family:Georgia,"Times New Roman","Yu Mincho",serif;font-size:19px;line-height:1.38;margin:4px 0 5px}.story p{font-size:12px;color:var(--muted);margin:0}
+.reason{margin-top:7px;font-size:11px;color:#53606b}.reason b{color:var(--navy)}
+.timebox{background:var(--soft);padding:12px 17px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12px;display:flex;justify-content:space-between;gap:15px}.timebox strong{color:var(--navy)}
+.end{margin:15px 17px 22px;border:1px solid var(--line);padding:15px;text-align:center;font-family:Georgia,"Yu Mincho",serif}.end small{display:block;color:var(--muted);font-family:inherit;margin-top:4px}
+.view{display:none}.view.active{display:block}.back{border:0;background:white;color:var(--navy);font-weight:800;padding:15px 17px;border-bottom:1px solid var(--line);width:100%;text-align:left}
+.article{padding:20px 18px}.article .kicker{font-size:11px;color:var(--red);font-weight:900}.article h1{font-family:Georgia,"Yu Mincho",serif;font-size:29px;line-height:1.35;margin:7px 0 9px}
+.article .dek{font-size:15px;color:#53606b;border-bottom:1px solid var(--line);padding-bottom:15px}
+.articleBlock{padding:15px 0;border-bottom:1px solid var(--line)}.articleBlock b{display:block;font-size:12px;color:var(--navy);margin-bottom:5px}.articleBlock p{margin:0;font-size:14px}
+.axis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:12px}.axis div{background:white;text-align:center;padding:8px 3px;font-size:10px;color:var(--muted)}.axis strong{display:block;font-size:18px;color:var(--ink)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.btn{border:0;padding:12px;font-weight:800}.primary{background:var(--navy);color:white}.secondary{background:var(--soft);color:var(--navy)}
+.save{width:100%;margin-top:8px;padding:11px;background:white;border:1px solid var(--line);font-weight:800;color:var(--navy)}
+.source{display:block;margin-top:10px;padding:11px;border:1px solid var(--line);color:var(--navy);text-decoration:none;font-weight:800;font-size:12px}
+.chat{display:none;margin-top:12px;background:var(--soft);padding:12px;font-size:12px}.chat div{margin:6px 0}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(820px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.96);border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom));z-index:5}
+.bn{border:0;background:none;color:var(--muted);font-size:10px;font-weight:800}.bn strong{display:block;font-size:18px}.bn.active{color:var(--navy)}
+.empty{margin:20px 17px;padding:25px;border:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}
+@media(min-width:650px){.hero h1{font-size:38px}.story h3{font-size:21px}.section{padding-left:24px;padding-right:24px}}
 </style>
 </head>
-<body>
-<div class="app">
-  <div id="home" class="view active">
-    <header>
-      <div class="brand">INSIGHT BRIEF</div>
-      <div id="today" class="date"></div>
-      <div class="sub">必要な情報だけ。深掘りして、終わったら閉じる。</div>
-    </header>
-
-    <div class="summary">
-      <div class="tag">MVP / デモ版</div>
-      <h2>今日のBrief</h2>
-      <p>重要な情報を8件に圧縮。<b>目安は約8分。</b></p>
-      <div class="pills"><span class="pill">重要 3</span><span class="pill">参考 4</span><span class="pill">OUTSIDE 1</span></div>
-      <div class="budget">
-        <div class="budgetrow"><span>今日の情報時間</span><b>8分 / 10分</b></div>
-        <div class="bar"><span></span></div>
-        <div class="budgetnote">残り2分。気になる1本だけ深掘りする余白。</div>
-      </div>
-    </div>
-
-    <div id="tabs" class="tabs"></div>
-    <div class="sectionTitle">今日、押さえておくもの</div>
-    <div id="cards" class="cards"></div>
-
-    <div class="endcard">
-      <b>今日押さえておきたい情報は以上です。</b>
-      <span>今日はもうニュースを追わなくても大丈夫です。</span>
-    </div>
-  </div>
-
-  <div id="detail" class="view"></div>
-
-  <div id="archive" class="view">
-    <header><div class="brand">MY ARCHIVE</div><div class="date">2026年 私の資料集</div><div class="sub">その場の刺激ではなく、時間が経っても残したい情報。</div></header>
-    <div id="archiveList"></div>
-  </div>
-
-  <div id="tracking" class="view">
-    <header><div class="brand">FOLLOW-UP</div><div class="date">追跡中</div><div class="sub">「その後どうなった？」を忘れない。</div></header>
-    <div id="trackingList"></div>
-  </div>
+<body><div class="app">
+<div id="home" class="view active">
+<header class="mast"><div class="mastTop"><div><div class="logo">Insight Brief</div><div class="tagline">自分の生活から、社会と世界を見る。</div></div><div id="date" class="date"></div></div></header>
+<div id="cats" class="navline"></div>
+<div class="edition"><b>TODAY'S BRIEF</b><span>8 stories ・ 約8分</span></div>
+<div id="hero"></div>
+<div class="timebox"><span>今日の情報時間 <strong>8 / 10分</strong></span><span>残り2分は深掘り用</span></div>
+<div id="sections"></div>
+<div class="end"><b>Today's brief is complete.</b><small>今日はもうニュースを追わなくても大丈夫です。</small></div>
 </div>
-
-<nav class="bottom">
-  <button class="nav active" data-view="home"><strong>⌂</strong>今日</button>
-  <button class="nav" data-view="archive"><strong>▣</strong>資料集</button>
-  <button class="nav" data-view="tracking"><strong>⌁</strong>追跡</button>
-</nav>
-
+<div id="detail" class="view"></div>
+<div id="archive" class="view"></div>
+<div id="tracking" class="view"></div>
+</div>
+<nav class="bottom"><button class="bn active" data-v="home"><strong>⌂</strong>今日</button><button class="bn" data-v="archive"><strong>▤</strong>資料集</button><button class="bn" data-v="tracking"><strong>⌁</strong>追跡</button></nav>
 <script>
-const items=[
-{id:1,ch:'NEWS',icon:'📰',title:'政治・経済：その日の出来事より「構造が変わる話題」を優先',reason:'一年後・10年後にも意味が残るニュースを中心にする',read:'1分',importance:'高',relation:'中',verified:'編集方針デモ',source:'',sourceUrl:'',what:'政治・経済ニュースは、日々の発言や騒動を追い続けるのではなく、制度・政策・景気・産業構造などの変化を中心に選びます。',why:'毎日の速報を追うだけでは情報量が増える一方で、長期的な理解につながりにくいからです。',me:'家計、仕事、地域経済など、自分の生活へどうつながるかまで整理します。',known:'これはInsight Briefの編集ルールです。',unknown:'実運用では最新情報を取得し、一次情報と報道を照合して掲載します。',time:['○','◎','◎','◎']},
-{id:2,ch:'MY経済圏',icon:'💹',title:'身近な企業から経済を見る：企業 → 業界 → マクロへ',reason:'日常で使う企業やサービスを起点にすると経済が自分ごとになる',read:'1分',importance:'高',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'日々利用する企業・サービスの決算、商品、価格、経営方針などを起点に情報を整理します。',why:'GDPや為替などの大きな数字だけを見るより、身近な企業の変化から広げた方が理解しやすいためです。',me:'仕事で関係する物流企業や、生活で使う通信・小売・金融などが対象になります。',known:'企業IRなどの一次情報を優先する方針です。',unknown:'地域単位など公開されていない数字は推測しません。',time:['◎','◎','○','○']},
-{id:3,ch:'軽配送',icon:'🚚',title:'物流：全国 → 地域 → 自分の現場の3層で見る',reason:'現場感覚と会社・業界データをつなげる',read:'1分',importance:'高',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'物流政策、宅配各社の公式発表、地域情報、自分の配達記録を別々にせずつなげて考えます。',why:'「今日は荷量が少なかった」のような一日の感覚を、より長い流れの中で解釈できるからです。',me:'業務効率、荷量、委託運用、置き配、不在対応などに直結します。',known:'公開情報と自分の記録は区別して扱います。',unknown:'主管支店など公開されないデータは分からないものとして扱います。',time:['◎','◎','○','△']},
-{id:4,ch:'AI',icon:'🤖',title:'AI：噂ではなく「実際に使い方が変わる更新」だけ拾う',reason:'AI分野は情報量と煽りが多いため',read:'45秒',importance:'中',relation:'高',verified:'編集方針デモ',source:'OpenAI公式情報',sourceUrl:'https://openai.com/news/',what:'AIニュースは、モデル比較や噂を全部追うのではなく、実際に提供開始された機能や大きな技術・社会変化を優先します。',why:'小さな更新を追い続ける時間を減らし、実生活で使える変化に集中するためです。',me:'情報整理、学習、仕事、アプリ作成などに直接関係するものを優先します。',known:'本番では公式発表を一次情報として確認します。',unknown:'新機能の長期的な価値は使ってから判断します。',time:['◎','○','△','△']},
-{id:5,ch:'学習',icon:'📚',title:'学習：放送大学・書籍・社会人学習の「使える情報」だけ',reason:'勉強の情報収集自体が目的化しないようにする',read:'45秒',importance:'参考',relation:'高',verified:'編集方針デモ',source:'放送大学',sourceUrl:'https://www.ouj.ac.jp/',what:'科目登録、講演会、新刊、学習法などから、実際の学習計画に関係するものを選びます。',why:'教材や学習法の情報を集めすぎるより、実際に学ぶ時間を増やす方が価値が高いからです。',me:'次に何を読む・学ぶ・申し込むかにつながる情報を優先します。',known:'趣味的な教育ニュースより行動につながるものを重視します。',unknown:'教材の相性は実際に試す必要があります。',time:['◎','○','△','×']},
-{id:6,ch:'ラジオ',icon:'📻',title:'ラジオ：番組・出演者・特集は「楽しむ情報」として拾う',reason:'趣味は有益性ではなく楽しさを大事にする',read:'40秒',importance:'趣味',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'好きな番組や出演者、特集、新番組などを短時間で確認します。',why:'SNSを延々と巡回しなくても、趣味の楽しみは残せるからです。',me:'聴き逃したくない番組や面白そうな特集の発見につながります。',known:'趣味カテゴリでは長期価値の基準を緩めます。',unknown:'実際の放送内容は当日変更される場合があります。',time:['◎','△','×','×']},
-{id:7,ch:'駅伝',icon:'🏃',title:'大学駅伝：好きだから細かく追ってよいカテゴリ',reason:'趣味カテゴリは効率だけで切り捨てない',read:'1分',importance:'趣味',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'大会、大学、選手、エントリー、結果、取材記事などをコンパクトにまとめます。',why:'好きなことに時間を使うこと自体に価値があるからです。',me:'観戦をより楽しむための情報として扱います。',known:'公式発表と専門報道を中心にします。',unknown:'選手の状態など、推測情報は事実と分けます。',time:['◎','○','×','×']},
-{id:8,ch:'OUTSIDE',icon:'🌍',title:'OUTSIDE：普段の関心外でも世界を見るための一本',reason:'自分向け最適化による視野の狭まりを防ぐ',read:'1分',importance:'中',relation:'低',verified:'編集方針デモ',source:'',sourceUrl:'',what:'国内では大きく扱われなくても、国際的に重要なニュースを1本だけ選びます。',why:'自分に関係する情報だけに閉じると、世界の大きな変化を見落とすからです。',me:'直接関係がなくても、長期的な社会理解の材料になります。',known:'本番では海外主要報道と一次情報を照合します。',unknown:'日本への影響が不明なら、不明のまま示します。',time:['○','◎','◎','○']}
+const data=[
+{id:1,c:'NEWS',title:'政治・経済は「今日の騒ぎ」より、構造が変わるニュースを読む',sum:'制度、政策、景気、産業構造。時間が経っても意味の残る変化を優先する。',why:'一年後・10年後にも意味が残るニュースを中心にする',read:'1分',imp:'高',rel:'中',what:'日々の発言や騒動を追い続けるのではなく、制度・政策・景気・産業構造などの変化を中心に選びます。',important:'速報を追うだけでは情報量が増える一方で、長期的な理解につながりにくいためです。',me:'家計、仕事、地域経済など、自分の生活へどうつながるかまで整理します。',fact:'これはInsight Briefの編集ルールです。',unknown:'実運用では最新情報を取得し、一次情報と複数報道を照合します。',axis:['○','◎','◎','◎']},
+{id:2,c:'MY ECONOMY',title:'身近な企業から経済を見る。企業 → 業界 → マクロへ視点を広げる',sum:'物流、通信、小売、金融など、日々接している企業を経済の入口にする。',why:'GDPや為替を、自分の生活につながる変化として理解する',read:'1分',imp:'高',rel:'高',what:'利用する企業・サービスの決算、商品、価格、経営方針を起点に情報を整理します。',important:'大きな経済指標だけを見るより、身近な企業から広げた方が変化を具体的に理解できるためです。',me:'仕事や家計で関係する企業を中心に扱います。',fact:'企業IRなどの一次情報を優先します。',unknown:'地域単位など公開されない数字は推測しません。',axis:['◎','◎','○','○']},
+{id:3,c:'DELIVERY',title:'物流は「全国 → 地域 → 現場」の3層で見る',sum:'宅配各社の経営、物流政策、地域事情と日々の配達実感をつなげる。',why:'現場感覚と会社・業界データを結びつける',read:'1分',imp:'高',rel:'高',what:'物流政策、宅配各社の公式発表、地域情報、自分の現場感覚をつなげて考えます。',important:'一日の荷量や効率を、より長い流れの中で解釈できるためです。',me:'荷量、効率、委託運用、置き配、不在対応などに直結します。',fact:'公開情報と現場での経験は区別して扱います。',unknown:'主管支店など公開されないデータは分からないものとして扱います。',axis:['◎','◎','○','△']},
+{id:4,c:'AI',title:'AIは噂より「実際に使い方が変わる更新」だけを拾う',sum:'提供開始された機能や大きな技術・社会変化を優先する。',why:'AI分野は情報量と煽りが特に多い',read:'45秒',imp:'中',rel:'高',what:'モデル比較や噂を全部追わず、実際に提供開始された機能や重要な変化を扱います。',important:'小さな更新を追い続ける時間を減らし、実生活で使える変化に集中するためです。',me:'情報整理、学習、仕事、アプリ作成に関係するものを優先します。',fact:'本番では公式発表を一次情報として確認します。',unknown:'新機能の長期的価値は実際に使って判断します。',axis:['◎','○','△','△']},
+{id:5,c:'LEARNING',title:'学習情報は「知る」より、次の学習行動につながるものを',sum:'放送大学、書籍、社会人学習。情報収集自体を目的化しない。',why:'学ぶための情報集めで学習時間を減らさない',read:'45秒',imp:'参考',rel:'高',what:'科目、新刊、講演、学習法から実際の学習計画に関係するものを選びます。',important:'教材や学習法の情報を集めすぎるより、実際に学ぶ時間を増やすためです。',me:'次に何を読む・学ぶ・申し込むかにつながる情報を優先します。',fact:'行動につながるものを重視する編集方針です。',unknown:'教材の相性は実際に試す必要があります。',axis:['◎','○','△','×']},
+{id:6,c:'RADIO',title:'ラジオは「役に立つか」ではなく、楽しむための情報として',sum:'番組、出演者、特集、新番組を短時間で確認する。',why:'趣味は有益性だけで切り捨てない',read:'40秒',imp:'趣味',rel:'高',what:'好きな番組や出演者、特集などを短時間で確認します。',important:'SNSを延々巡回しなくても趣味の楽しみを残すためです。',me:'聴き逃したくない番組や面白そうな特集の発見につながります。',fact:'趣味カテゴリでは長期価値の基準を緩めます。',unknown:'放送内容は当日変更される場合があります。',axis:['◎','△','×','×']},
+{id:7,c:'EKIDEN',title:'大学駅伝は、好きだから細かく追ってよい',sum:'大会、大学、選手、エントリー、結果。趣味の時間として楽しむ。',why:'好きなことに時間を使うこと自体に価値がある',read:'1分',imp:'趣味',rel:'高',what:'大会、大学、選手、エントリー、結果、取材記事をコンパクトにまとめます。',important:'効率だけで趣味を削らないためです。',me:'観戦をより楽しむための情報として扱います。',fact:'公式発表と専門報道を中心にします。',unknown:'選手の状態など推測情報は事実と分けます。',axis:['◎','○','×','×']},
+{id:8,c:'WORLD / OUTSIDE',title:'関心外からも毎日一本。自分向け最適化の外へ出る',sum:'日本で大きく扱われなくても、世界の流れを変えるニュースを選ぶ。',why:'自分向け最適化による視野の狭まりを防ぐ',read:'1分',imp:'中',rel:'低',what:'国内では大きく扱われなくても、国際的に重要なニュースを一本選びます。',important:'自分に関係する情報だけでは世界の大きな変化を見落とすためです。',me:'直接関係がなくても長期的な社会理解の材料になります。',fact:'本番では海外主要報道と一次情報を照合します。',unknown:'日本への影響が不明なら不明のまま示します。',axis:['○','◎','◎','○']}
 ];
-
-const channels=['すべて','NEWS','MY経済圏','軽配送','AI','学習','ラジオ','駅伝','OUTSIDE'];
-let current='すべて';
-let tracked=new Set(JSON.parse(localStorage.getItem('ib_tracked')||'[]'));
-let saved=new Set(JSON.parse(localStorage.getItem('ib_saved')||'[]'));
-
-const $=s=>document.querySelector(s);
-const today=new Intl.DateTimeFormat('ja-JP',{month:'long',day:'numeric',weekday:'short'}).format(new Date());
-$('#today').textContent=today;
-
-function showView(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  $('#'+id).classList.add('active');
-  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.view===id));
-  if(id==='archive') renderArchive();
-  if(id==='tracking') renderTracking();
-  window.scrollTo(0,0);
-}
-
-function renderTabs(){
-  $('#tabs').innerHTML=channels.map(c=>`<button class="tab ${c===current?'active':''}" onclick="setChannel('${c}')">${c}</button>`).join('');
-}
-function setChannel(c){current=c;renderTabs();renderCards()}
-function renderCards(){
-  const list=current==='すべて'?items:items.filter(x=>x.ch===current);
-  $('#cards').innerHTML=list.map(x=>`
-    <article class="card" onclick="openDetail(${x.id})">
-      <div class="topline"><span class="tag">${x.icon} ${x.ch}</span><span class="read">約 ${x.read}</span></div>
-      <h3>${x.title}</h3>
-      <div class="reason">選定理由：${x.reason}</div>
-      <div class="metrics">
-        <span class="metric">重要度 ${x.importance}</span>
-        <span class="metric">自分との関連 ${x.relation}</span>
-      </div>
-    </article>`).join('');
-}
-function openDetail(id){
-  const x=items.find(i=>i.id===id);
-  $('#detail').innerHTML=`
-    <button class="back" onclick="showView('home')">← 今日のBriefへ</button>
-    <div class="detail">
-      <div class="tag">${x.icon} ${x.ch} ・ ${x.verified}</div>
-      <h1>${x.title}</h1>
-      <div class="reason">選定理由：${x.reason}</div>
-      <div class="facts">
-        <div class="fact"><b>何が起きた？</b>${x.what}</div>
-        <div class="fact"><b>なぜ重要？</b>${x.why}</div>
-        <div class="fact"><b>自分との関係</b>${x.me}</div>
-        <div class="fact"><b>確認できている事実</b>${x.known}</div>
-        <div class="fact"><b>まだ分からないこと</b>${x.unknown}</div>
-      </div>
-      <div class="timelineTitle">時間軸評価</div>
-      <div class="timeline">
-        <div class="timebox">1週間後<strong>${x.time[0]}</strong></div>
-        <div class="timebox">今年<strong>${x.time[1]}</strong></div>
-        <div class="timebox">10年後<strong>${x.time[2]}</strong></div>
-        <div class="timebox">資料集<strong>${x.time[3]}</strong></div>
-      </div>
-      <div class="actions">
-        <button class="btn primary" onclick="toggleChat()">💬 チャッピーと考える</button>
-        <button class="btn secondary ${tracked.has(x.id)?'tracked':''}" onclick="toggleTrack(${x.id})">${tracked.has(x.id)?'✓ 追跡中':'📌 追跡する'}</button>
-      </div>
-      <button class="savebtn ${saved.has(x.id)?'saved':''}" onclick="toggleSave(${x.id})">${saved.has(x.id)?'✓ 私の資料集に保存済み':'📘 私の資料集に残す'}</button>
-      ${x.sourceUrl?`<a class="source" href="${x.sourceUrl}" target="_blank" rel="noopener">↗ ${x.source}<small>公式情報を開く</small></a>`:''}
-      <div id="chatbox" class="chatbox">
-        <div class="prompt">具体 → 背景 → 構造 → 自分への影響 の順で考える</div>
-        <div class="prompt">反対側の立場から見ると、どう見える？</div>
-        <div class="prompt">確認できる事実・解釈・推測を分ける</div>
-        <div class="note">デモ版では対話の入口のみ。本番版でChatGPTとの対話へ接続予定。</div>
-      </div>
-    </div>`;
-  showView('detail');
-}
-function toggleChat(){const b=$('#chatbox');b.style.display=b.style.display==='block'?'none':'block'}
-function toggleTrack(id){tracked.has(id)?tracked.delete(id):tracked.add(id);localStorage.setItem('ib_tracked',JSON.stringify([...tracked]));openDetail(id)}
-function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);localStorage.setItem('ib_saved',JSON.stringify([...saved]));openDetail(id)}
-function renderArchive(){
-  const list=[...saved].map(id=>items.find(x=>x.id===id)).filter(Boolean);
-  const candidates=items.filter(x=>x.time[1]==='◎'||x.time[2]==='◎'||x.time[3]==='◎');
-  $('#archiveList').innerHTML=(list.length?`
-    <div class="sectionTitle">自分で残したもの</div>
-    <div class="cards">${list.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch} ・ 保存済み</div><h3>${x.title}</h3><div class="reason">自分の判断で資料集に残しました。</div></article>`).join('')}</div>`
-    :`<div class="empty">まだ保存したニュースはありません。<br><span class="small">記事詳細の「私の資料集に残す」から追加できます。</span></div>`)
-    +`<div class="sectionTitle" style="margin-top:16px">チャッピーの候補</div><div class="cards">${candidates.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch}</div><h3>${x.title}</h3><div class="reason">長期的に残る可能性が高い候補。</div></article>`).join('')}</div>`;
-}
-function renderTracking(){
-  const list=[...tracked].map(id=>items.find(x=>x.id===id)).filter(Boolean);
-  $('#trackingList').innerHTML=list.length?`<div class="cards">${list.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch} ・ 追跡中</div><h3>${x.title}</h3><div class="reason">本番では重要な続報があった時だけ更新します。</div></article>`).join('')}</div>`:`<div class="empty">追跡中のテーマはありません。<br><span class="small">記事詳細の「追跡する」から追加できます。</span></div>`;
-}
-document.querySelectorAll('.nav').forEach(n=>n.addEventListener('click',()=>showView(n.dataset.view)));
-renderTabs();renderCards();
-</script>
-</body>
-</html>
+const cats=['ALL','NEWS','MY ECONOMY','DELIVERY','AI','LEARNING','RADIO','EKIDEN','WORLD / OUTSIDE']; let filter='ALL';
+let saved=new Set(JSON.parse(localStorage.getItem('ibs')||'[]')), tracked=new Set(JSON.parse(localStorage.getItem('ibt')||'[]'));
+const $=s=>document.querySelector(s); $('#date').innerHTML=new Intl.DateTimeFormat('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(new Date())+'<br>PERSONAL EDITION';
+function catsRender(){$('#cats').innerHTML=cats.map(x=>`<button class="cat ${filter===x?'active':''}" onclick="setCat('${x.replace(/'/g,"\\'")}')">${x}</button>`).join('')}
+function setCat(c){filter=c;renderHome()}
+function renderHome(){catsRender();let arr=filter==='ALL'?data:data.filter(x=>x.c===filter); if(!arr.length)return;
+let lead=arr[0];$('#hero').innerHTML=`<article class="hero" onclick="openArticle(${lead.id})"><div class="heroLabel">TOP STORY ・ ${lead.c}</div><h1>${lead.title}</h1><p>${lead.sum}</p><div class="meta"><span>重要度 ${lead.imp}</span><span>関連 ${lead.rel}</span><span>約${lead.read}</span></div></article>`;
+let rest=arr.slice(1);let groups={};rest.forEach(x=>(groups[x.c]??=[]).push(x));
+$('#sections').innerHTML=Object.entries(groups).map(([c,xs])=>`<section class="section"><div class="sectionHead"><h2>${c}</h2><span>${xs.length} STORY</span></div>${xs.map(x=>`<article class="story" onclick="openArticle(${x.id})"><div class="storyCat">${x.c}</div><h3>${x.title}</h3><p>${x.sum}</p><div class="reason"><b>WHY THIS MATTERS</b>　${x.why}</div><div class="meta" style="margin-top:7px"><span>重要度 ${x.imp}</span><span>関連 ${x.rel}</span><span>約${x.read}</span></div></article>`).join('')}</section>`).join('')}
+function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));$('#'+v).classList.add('active');document.querySelectorAll('.bn').forEach(x=>x.classList.toggle('active',x.dataset.v===v));if(v==='archive')renderArchive();if(v==='tracking')renderTrack();scrollTo(0,0)}
+function openArticle(id){let x=data.find(a=>a.id===id);$('#detail').innerHTML=`<button class="back" onclick="show('home')">← Insight Brief</button><article class="article"><div class="kicker">${x.c} ・ 約${x.read}</div><h1>${x.title}</h1><div class="dek">${x.sum}</div>
+${[['何が起きた？',x.what],['なぜ重要？',x.important],['自分との関係',x.me],['確認できている事実',x.fact],['まだ分からないこと',x.unknown]].map(a=>`<div class="articleBlock"><b>${a[0]}</b><p>${a[1]}</p></div>`).join('')}
+<div class="articleBlock"><b>時間軸評価</b><div class="axis">${['1週間後','今年','10年後','資料集'].map((a,i)=>`<div>${a}<strong>${x.axis[i]}</strong></div>`).join('')}</div></div>
+<div class="actions"><button class="btn primary" onclick="toggleChat()">チャッピーと考える</button><button class="btn secondary" onclick="toggleTrack(${id})">${tracked.has(id)?'✓ 追跡中':'追跡する'}</button></div>
+<button class="save" onclick="toggleSave(${id})">${saved.has(id)?'✓ 資料集に保存済み':'私の資料集に残す'}</button>
+<div id="chat" class="chat"><div>・具体 → 背景 → 構造 → 自分への影響</div><div>・反対側から見るとどう見える？</div><div>・事実 / 解釈 / 推測を分ける</div><small>本番版でChatGPT対話へ接続予定。</small></div></article>`;show('detail')}
+function toggleChat(){let e=$('#chat');e.style.display=e.style.display==='block'?'none':'block'}
+function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);localStorage.setItem('ibs',JSON.stringify([...saved]));openArticle(id)}
+function toggleTrack(id){tracked.has(id)?tracked.delete(id):tracked.add(id);localStorage.setItem('ibt',JSON.stringify([...tracked]));openArticle(id)}
+function renderArchive(){let xs=[...saved].map(id=>data.find(x=>x.id===id)).filter(Boolean);$('#archive').innerHTML=`<header class="mast"><div class="logo">My Archive</div><div class="tagline">時間が経っても残したい情報。</div></header>${xs.length?`<section class="section">${xs.map(x=>`<article class="story" onclick="openArticle(${x.id})"><div class="storyCat">${x.c}</div><h3>${x.title}</h3><p>${x.sum}</p></article>`).join('')}</section>`:`<div class="empty">まだ保存した記事はありません。</div>`}`}
+function renderTrack(){let xs=[...tracked].map(id=>data.find(x=>x.id===id)).filter(Boolean);$('#tracking').innerHTML=`<header class="mast"><div class="logo">Follow-up</div><div class="tagline">「その後どうなった？」を忘れない。</div></header>${xs.length?`<section class="section">${xs.map(x=>`<article class="story" onclick="openArticle(${x.id})"><div class="storyCat">${x.c}</div><h3>${x.title}</h3><p>重要な続報があったときだけ更新するテーマ。</p></article>`).join('')}</section>`:`<div class="empty">追跡中のテーマはありません。</div>`}`}
+document.querySelectorAll('.bn').forEach(x=>x.onclick=()=>show(x.dataset.v));renderHome();
+</script></body></html>
