@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f2eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Insight Brief</title>
+<style>
+:root{
+  --bg:#f4f2eb; --card:#fffdf8; --ink:#202428; --muted:#6b7379; --line:#ddd9cf;
+  --accent:#244a5e; --accent2:#587b76; --soft:#eaf0ec; --warm:#f3eadf;
+  --shadow:0 8px 24px rgba(20,28,36,.055)
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif;line-height:1.55}
+button,a{font:inherit}
+.app{max-width:760px;margin:0 auto;min-height:100vh;padding:env(safe-area-inset-top) 0 calc(84px + env(safe-area-inset-bottom))}
+header{padding:25px 18px 10px}
+.brand{font-size:12px;letter-spacing:.17em;font-weight:800;color:var(--muted)}
+.date{font-size:27px;font-weight:850;margin-top:3px}
+.sub{font-size:13px;color:var(--muted);margin-top:2px}
+.summary{margin:8px 16px 14px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+.summary h2{margin:2px 0 5px;font-size:22px}
+.summary p{margin:0;color:var(--muted);font-size:14px}
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.pill{font-size:11px;padding:5px 8px;border-radius:999px;background:var(--soft);color:#39514c;font-weight:750}
+.budget{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.budgetrow{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}
+.bar{height:8px;background:#e6e3dc;border-radius:999px;overflow:hidden}
+.bar span{display:block;height:100%;width:80%;background:var(--accent2)}
+.budgetnote{font-size:12px;color:var(--muted);margin-top:7px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--card);padding:9px 12px;border-radius:999px;font-size:12px;font-weight:750;color:var(--muted)}
+.tab.active{background:var(--accent);color:white;border-color:var(--accent)}
+.sectionTitle{padding:2px 18px 8px;font-size:13px;font-weight:800;color:var(--muted)}
+.cards{padding:0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:11px;box-shadow:var(--shadow);cursor:pointer}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.tag{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.02em}
+.read{font-size:11px;color:var(--muted)}
+.card h3{font-size:17px;line-height:1.45;margin:8px 0 7px}
+.reason{font-size:12px;color:var(--muted);background:#f3f0e9;padding:9px 10px;border-radius:11px}
+.metrics{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.metric{font-size:11px;border:1px solid var(--line);border-radius:8px;padding:4px 6px;color:var(--muted)}
+.endcard{margin:18px 16px;background:#e9efe9;border:1px solid #d1ddd3;border-radius:18px;padding:17px;text-align:center}
+.endcard b{display:block;font-size:16px;margin-bottom:5px}
+.endcard span{font-size:12px;color:var(--muted)}
+.view{display:none}.view.active{display:block}
+.back{border:0;background:transparent;padding:15px 18px;color:var(--accent);font-weight:800}
+.detail{margin:0 16px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.detail h1{font-size:23px;line-height:1.45;margin:8px 0 12px}
+.facts{display:grid;gap:9px;margin-top:15px}
+.fact{background:#f5f2eb;border-radius:14px;padding:12px;font-size:14px}
+.fact b{display:block;font-size:12px;color:var(--accent);margin-bottom:4px}
+.timelineTitle{font-size:13px;font-weight:850;margin-top:18px;margin-bottom:8px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.timebox{background:var(--soft);border-radius:12px;padding:8px;text-align:center;font-size:10px;color:var(--muted)}
+.timebox strong{display:block;font-size:17px;color:var(--ink);margin-top:4px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+.btn{border:0;border-radius:13px;padding:12px;font-weight:850}
+.primary{background:var(--accent);color:white}
+.secondary{background:var(--soft);color:#39514c}
+.savebtn{width:100%;margin-top:8px;border:1px solid var(--line);background:#fffaf1;color:var(--accent);border-radius:13px;padding:11px;font-weight:850}
+.saved,.tracked{background:#dfece3!important;color:#355947!important}
+.source{display:block;margin-top:10px;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--accent);font-size:13px;font-weight:800;background:white}
+.source small{display:block;color:var(--muted);font-weight:500;margin-top:2px}
+.chatbox{display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.prompt{background:#edf1ef;border-radius:12px;padding:10px 11px;font-size:13px;margin-bottom:7px}
+.note{font-size:12px;color:var(--muted)}
+.empty{margin:0 16px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:18px;text-align:center;color:var(--muted);font-size:13px}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(250,248,242,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:10}
+.nav{border:0;background:transparent;padding:7px 2px;color:var(--muted);font-size:11px;font-weight:750}
+.nav strong{display:block;font-size:19px;line-height:1.1;margin-bottom:2px}
+.nav.active{color:var(--accent)}
+.small{font-size:11px;color:var(--muted)}
+@media(max-width:420px){.timeline{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="home" class="view active">
+    <header>
+      <div class="brand">INSIGHT BRIEF</div>
+      <div id="today" class="date"></div>
+      <div class="sub">必要な情報だけ。深掘りして、終わったら閉じる。</div>
+    </header>
+
+    <div class="summary">
+      <div class="tag">MVP / デモ版</div>
+      <h2>今日のBrief</h2>
+      <p>重要な情報を8件に圧縮。<b>目安は約8分。</b></p>
+      <div class="pills"><span class="pill">重要 3</span><span class="pill">参考 4</span><span class="pill">OUTSIDE 1</span></div>
+      <div class="budget">
+        <div class="budgetrow"><span>今日の情報時間</span><b>8分 / 10分</b></div>
+        <div class="bar"><span></span></div>
+        <div class="budgetnote">残り2分。気になる1本だけ深掘りする余白。</div>
+      </div>
+    </div>
+
+    <div id="tabs" class="tabs"></div>
+    <div class="sectionTitle">今日、押さえておくもの</div>
+    <div id="cards" class="cards"></div>
+
+    <div class="endcard">
+      <b>今日押さえておきたい情報は以上です。</b>
+      <span>今日はもうニュースを追わなくても大丈夫です。</span>
+    </div>
+  </div>
+
+  <div id="detail" class="view"></div>
+
+  <div id="archive" class="view">
+    <header><div class="brand">MY ARCHIVE</div><div class="date">2026年 私の資料集</div><div class="sub">その場の刺激ではなく、時間が経っても残したい情報。</div></header>
+    <div id="archiveList"></div>
+  </div>
+
+  <div id="tracking" class="view">
+    <header><div class="brand">FOLLOW-UP</div><div class="date">追跡中</div><div class="sub">「その後どうなった？」を忘れない。</div></header>
+    <div id="trackingList"></div>
+  </div>
+</div>
+
+<nav class="bottom">
+  <button class="nav active" data-view="home"><strong>⌂</strong>今日</button>
+  <button class="nav" data-view="archive"><strong>▣</strong>資料集</button>
+  <button class="nav" data-view="tracking"><strong>⌁</strong>追跡</button>
+</nav>
+
+<script>
+const items=[
+{id:1,ch:'NEWS',icon:'📰',title:'政治・経済：その日の出来事より「構造が変わる話題」を優先',reason:'一年後・10年後にも意味が残るニュースを中心にする',read:'1分',importance:'高',relation:'中',verified:'編集方針デモ',source:'',sourceUrl:'',what:'政治・経済ニュースは、日々の発言や騒動を追い続けるのではなく、制度・政策・景気・産業構造などの変化を中心に選びます。',why:'毎日の速報を追うだけでは情報量が増える一方で、長期的な理解につながりにくいからです。',me:'家計、仕事、地域経済など、自分の生活へどうつながるかまで整理します。',known:'これはInsight Briefの編集ルールです。',unknown:'実運用では最新情報を取得し、一次情報と報道を照合して掲載します。',time:['○','◎','◎','◎']},
+{id:2,ch:'MY経済圏',icon:'💹',title:'身近な企業から経済を見る：企業 → 業界 → マクロへ',reason:'日常で使う企業やサービスを起点にすると経済が自分ごとになる',read:'1分',importance:'高',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'日々利用する企業・サービスの決算、商品、価格、経営方針などを起点に情報を整理します。',why:'GDPや為替などの大きな数字だけを見るより、身近な企業の変化から広げた方が理解しやすいためです。',me:'仕事で関係する物流企業や、生活で使う通信・小売・金融などが対象になります。',known:'企業IRなどの一次情報を優先する方針です。',unknown:'地域単位など公開されていない数字は推測しません。',time:['◎','◎','○','○']},
+{id:3,ch:'軽配送',icon:'🚚',title:'物流：全国 → 地域 → 自分の現場の3層で見る',reason:'現場感覚と会社・業界データをつなげる',read:'1分',importance:'高',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'物流政策、宅配各社の公式発表、地域情報、自分の配達記録を別々にせずつなげて考えます。',why:'「今日は荷量が少なかった」のような一日の感覚を、より長い流れの中で解釈できるからです。',me:'業務効率、荷量、委託運用、置き配、不在対応などに直結します。',known:'公開情報と自分の記録は区別して扱います。',unknown:'主管支店など公開されないデータは分からないものとして扱います。',time:['◎','◎','○','△']},
+{id:4,ch:'AI',icon:'🤖',title:'AI：噂ではなく「実際に使い方が変わる更新」だけ拾う',reason:'AI分野は情報量と煽りが多いため',read:'45秒',importance:'中',relation:'高',verified:'編集方針デモ',source:'OpenAI公式情報',sourceUrl:'https://openai.com/news/',what:'AIニュースは、モデル比較や噂を全部追うのではなく、実際に提供開始された機能や大きな技術・社会変化を優先します。',why:'小さな更新を追い続ける時間を減らし、実生活で使える変化に集中するためです。',me:'情報整理、学習、仕事、アプリ作成などに直接関係するものを優先します。',known:'本番では公式発表を一次情報として確認します。',unknown:'新機能の長期的な価値は使ってから判断します。',time:['◎','○','△','△']},
+{id:5,ch:'学習',icon:'📚',title:'学習：放送大学・書籍・社会人学習の「使える情報」だけ',reason:'勉強の情報収集自体が目的化しないようにする',read:'45秒',importance:'参考',relation:'高',verified:'編集方針デモ',source:'放送大学',sourceUrl:'https://www.ouj.ac.jp/',what:'科目登録、講演会、新刊、学習法などから、実際の学習計画に関係するものを選びます。',why:'教材や学習法の情報を集めすぎるより、実際に学ぶ時間を増やす方が価値が高いからです。',me:'次に何を読む・学ぶ・申し込むかにつながる情報を優先します。',known:'趣味的な教育ニュースより行動につながるものを重視します。',unknown:'教材の相性は実際に試す必要があります。',time:['◎','○','△','×']},
+{id:6,ch:'ラジオ',icon:'📻',title:'ラジオ：番組・出演者・特集は「楽しむ情報」として拾う',reason:'趣味は有益性ではなく楽しさを大事にする',read:'40秒',importance:'趣味',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'好きな番組や出演者、特集、新番組などを短時間で確認します。',why:'SNSを延々と巡回しなくても、趣味の楽しみは残せるからです。',me:'聴き逃したくない番組や面白そうな特集の発見につながります。',known:'趣味カテゴリでは長期価値の基準を緩めます。',unknown:'実際の放送内容は当日変更される場合があります。',time:['◎','△','×','×']},
+{id:7,ch:'駅伝',icon:'🏃',title:'大学駅伝：好きだから細かく追ってよいカテゴリ',reason:'趣味カテゴリは効率だけで切り捨てない',read:'1分',importance:'趣味',relation:'高',verified:'編集方針デモ',source:'',sourceUrl:'',what:'大会、大学、選手、エントリー、結果、取材記事などをコンパクトにまとめます。',why:'好きなことに時間を使うこと自体に価値があるからです。',me:'観戦をより楽しむための情報として扱います。',known:'公式発表と専門報道を中心にします。',unknown:'選手の状態など、推測情報は事実と分けます。',time:['◎','○','×','×']},
+{id:8,ch:'OUTSIDE',icon:'🌍',title:'OUTSIDE：普段の関心外でも世界を見るための一本',reason:'自分向け最適化による視野の狭まりを防ぐ',read:'1分',importance:'中',relation:'低',verified:'編集方針デモ',source:'',sourceUrl:'',what:'国内では大きく扱われなくても、国際的に重要なニュースを1本だけ選びます。',why:'自分に関係する情報だけに閉じると、世界の大きな変化を見落とすからです。',me:'直接関係がなくても、長期的な社会理解の材料になります。',known:'本番では海外主要報道と一次情報を照合します。',unknown:'日本への影響が不明なら、不明のまま示します。',time:['○','◎','◎','○']}
+];
+
+const channels=['すべて','NEWS','MY経済圏','軽配送','AI','学習','ラジオ','駅伝','OUTSIDE'];
+let current='すべて';
+let tracked=new Set(JSON.parse(localStorage.getItem('ib_tracked')||'[]'));
+let saved=new Set(JSON.parse(localStorage.getItem('ib_saved')||'[]'));
+
+const $=s=>document.querySelector(s);
+const today=new Intl.DateTimeFormat('ja-JP',{month:'long',day:'numeric',weekday:'short'}).format(new Date());
+$('#today').textContent=today;
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  $('#'+id).classList.add('active');
+  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.view===id));
+  if(id==='archive') renderArchive();
+  if(id==='tracking') renderTracking();
+  window.scrollTo(0,0);
+}
+
+function renderTabs(){
+  $('#tabs').innerHTML=channels.map(c=>`<button class="tab ${c===current?'active':''}" onclick="setChannel('${c}')">${c}</button>`).join('');
+}
+function setChannel(c){current=c;renderTabs();renderCards()}
+function renderCards(){
+  const list=current==='すべて'?items:items.filter(x=>x.ch===current);
+  $('#cards').innerHTML=list.map(x=>`
+    <article class="card" onclick="openDetail(${x.id})">
+      <div class="topline"><span class="tag">${x.icon} ${x.ch}</span><span class="read">約 ${x.read}</span></div>
+      <h3>${x.title}</h3>
+      <div class="reason">選定理由：${x.reason}</div>
+      <div class="metrics">
+        <span class="metric">重要度 ${x.importance}</span>
+        <span class="metric">自分との関連 ${x.relation}</span>
+      </div>
+    </article>`).join('');
+}
+function openDetail(id){
+  const x=items.find(i=>i.id===id);
+  $('#detail').innerHTML=`
+    <button class="back" onclick="showView('home')">← 今日のBriefへ</button>
+    <div class="detail">
+      <div class="tag">${x.icon} ${x.ch} ・ ${x.verified}</div>
+      <h1>${x.title}</h1>
+      <div class="reason">選定理由：${x.reason}</div>
+      <div class="facts">
+        <div class="fact"><b>何が起きた？</b>${x.what}</div>
+        <div class="fact"><b>なぜ重要？</b>${x.why}</div>
+        <div class="fact"><b>自分との関係</b>${x.me}</div>
+        <div class="fact"><b>確認できている事実</b>${x.known}</div>
+        <div class="fact"><b>まだ分からないこと</b>${x.unknown}</div>
+      </div>
+      <div class="timelineTitle">時間軸評価</div>
+      <div class="timeline">
+        <div class="timebox">1週間後<strong>${x.time[0]}</strong></div>
+        <div class="timebox">今年<strong>${x.time[1]}</strong></div>
+        <div class="timebox">10年後<strong>${x.time[2]}</strong></div>
+        <div class="timebox">資料集<strong>${x.time[3]}</strong></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" onclick="toggleChat()">💬 チャッピーと考える</button>
+        <button class="btn secondary ${tracked.has(x.id)?'tracked':''}" onclick="toggleTrack(${x.id})">${tracked.has(x.id)?'✓ 追跡中':'📌 追跡する'}</button>
+      </div>
+      <button class="savebtn ${saved.has(x.id)?'saved':''}" onclick="toggleSave(${x.id})">${saved.has(x.id)?'✓ 私の資料集に保存済み':'📘 私の資料集に残す'}</button>
+      ${x.sourceUrl?`<a class="source" href="${x.sourceUrl}" target="_blank" rel="noopener">↗ ${x.source}<small>公式情報を開く</small></a>`:''}
+      <div id="chatbox" class="chatbox">
+        <div class="prompt">具体 → 背景 → 構造 → 自分への影響 の順で考える</div>
+        <div class="prompt">反対側の立場から見ると、どう見える？</div>
+        <div class="prompt">確認できる事実・解釈・推測を分ける</div>
+        <div class="note">デモ版では対話の入口のみ。本番版でChatGPTとの対話へ接続予定。</div>
+      </div>
+    </div>`;
+  showView('detail');
+}
+function toggleChat(){const b=$('#chatbox');b.style.display=b.style.display==='block'?'none':'block'}
+function toggleTrack(id){tracked.has(id)?tracked.delete(id):tracked.add(id);localStorage.setItem('ib_tracked',JSON.stringify([...tracked]));openDetail(id)}
+function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);localStorage.setItem('ib_saved',JSON.stringify([...saved]));openDetail(id)}
+function renderArchive(){
+  const list=[...saved].map(id=>items.find(x=>x.id===id)).filter(Boolean);
+  const candidates=items.filter(x=>x.time[1]==='◎'||x.time[2]==='◎'||x.time[3]==='◎');
+  $('#archiveList').innerHTML=(list.length?`
+    <div class="sectionTitle">自分で残したもの</div>
+    <div class="cards">${list.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch} ・ 保存済み</div><h3>${x.title}</h3><div class="reason">自分の判断で資料集に残しました。</div></article>`).join('')}</div>`
+    :`<div class="empty">まだ保存したニュースはありません。<br><span class="small">記事詳細の「私の資料集に残す」から追加できます。</span></div>`)
+    +`<div class="sectionTitle" style="margin-top:16px">チャッピーの候補</div><div class="cards">${candidates.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch}</div><h3>${x.title}</h3><div class="reason">長期的に残る可能性が高い候補。</div></article>`).join('')}</div>`;
+}
+function renderTracking(){
+  const list=[...tracked].map(id=>items.find(x=>x.id===id)).filter(Boolean);
+  $('#trackingList').innerHTML=list.length?`<div class="cards">${list.map(x=>`<article class="card" onclick="openDetail(${x.id})"><div class="tag">${x.icon} ${x.ch} ・ 追跡中</div><h3>${x.title}</h3><div class="reason">本番では重要な続報があった時だけ更新します。</div></article>`).join('')}</div>`:`<div class="empty">追跡中のテーマはありません。<br><span class="small">記事詳細の「追跡する」から追加できます。</span></div>`;
+}
+document.querySelectorAll('.nav').forEach(n=>n.addEventListener('click',()=>showView(n.dataset.view)));
+renderTabs();renderCards();
+</script>
+</body>
+</html>
