@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T12:00+09:00",
+  "updated_at": "2026-08-11T18:03+09:00",
   "edition": "AUTO v1",
   "stories": [
     {
@@ -183,11 +183,5 @@
       "why": "公式情報の新着候補です。Insight Briefで重要性と自分との関係を確認します。"
     }
   ],
-  "errors": [
-    {
-      "source": "国土交通省",
-      "error": "multi-byte encodings are not supported",
-      "fallback": "https://www.mlit.go.jp/report/press/"
-    }
-  ]
+  "errors": []
 }
