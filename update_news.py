@@ -14,7 +14,7 @@ SOURCES = [
     {
         "category": "DELIVERY",
         "name": "ヤマトホールディングス",
-        "url": "https://www.yamato-hd.co.jp/news/rss.xml",
+        "url": "https://www.yamato-hd.co.jp/investors/information/info.xml",
         "fallback": "https://www.yamato-hd.co.jp/news/"
     },
     {
@@ -26,7 +26,7 @@ SOURCES = [
     {
         "category": "NEWS",
         "name": "国土交通省",
-        "url": "https://www.mlit.go.jp/report/press/rss.xml",
+        "url": "https://www.mlit.go.jp/pressrelease.rdf",
         "fallback": "https://www.mlit.go.jp/report/press/"
     },
     {
