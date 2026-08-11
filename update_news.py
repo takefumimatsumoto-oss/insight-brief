@@ -54,7 +54,9 @@ def clean(s):
     return re.sub(r"\s+", " ", s).strip()
 
 def parse_feed(raw, src):
-    root = ET.fromstring(raw)
+    enc_match = re.search(br'encoding=["\']([^"\']+)["\']', raw[:200], re.I)
+    enc = enc_match.group(1).decode("ascii") if enc_match else "utf-8"
+    root = ET.fromstring(raw.decode(enc, errors="replace"))
     rows = []
     # RSS
     for item in root.findall(".//item"):
