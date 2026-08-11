@@ -106,6 +106,58 @@ def parse_feed(raw, src):
         })
     return out
 
+
+def topic_key(title):
+    t = title.lower()
+
+    # 同じ出来事の関連記事を1テーマにまとめる
+    rules = [
+        ("台風", "weather-typhoon"),
+        ("大雨", "weather-rain"),
+        ("地震", "disaster-earthquake"),
+        ("津波", "disaster-tsunami"),
+        ("猛暑", "weather-heat"),
+        ("大雪", "weather-snow"),
+        ("衆議院", "politics-lowerhouse"),
+        ("参議院", "politics-upperhouse"),
+        ("総裁選", "politics-party-leader"),
+        ("内閣", "politics-cabinet"),
+        ("日銀", "economy-boj"),
+        ("為替", "economy-fx"),
+        ("円相場", "economy-fx"),
+        ("株価", "economy-stocks"),
+        ("トランプ", "world-trump"),
+        ("ウクライナ", "world-ukraine"),
+        ("ガザ", "world-gaza"),
+    ]
+    for word, key in rules:
+        if word in t:
+            return key
+
+    # 一般語を落として、見出しの核だけで簡易判定
+    words = re.findall(r"[一-龥ぁ-んァ-ンA-Za-z0-9]{2,}", t)
+    stop = {
+        "今後", "最新", "速報", "解説", "影響", "見通し", "まとめ",
+        "きょう", "今日", "あす", "明日", "について", "ニュース"
+    }
+    core = [w for w in words if w not in stop][:3]
+    return "-".join(core) if core else t[:18]
+
+def diverse_news(items, limit=3):
+    selected = []
+    seen_topics = set()
+
+    for item in items:
+        key = topic_key(item.get("title", ""))
+        if key in seen_topics:
+            continue
+        selected.append(item)
+        seen_topics.add(key)
+        if len(selected) >= limit:
+            break
+
+    return selected
+
 def select_brief(stories):
     buckets = {"DELIVERY": [], "NEWS": [], "AI": []}
     for s in stories:
@@ -113,8 +165,9 @@ def select_brief(stories):
 
     selected = []
     # 朝刊の基本構成：仕事3、一般ニュース3、AI2
-    for cat, n in [("DELIVERY", 3), ("NEWS", 3), ("AI", 2)]:
-        selected.extend(buckets.get(cat, [])[:n])
+    selected.extend(buckets.get("DELIVERY", [])[:3])
+    selected.extend(diverse_news(buckets.get("NEWS", []), 3))
+    selected.extend(buckets.get("AI", [])[:2])
 
     if len(selected) < 8:
         seen = {x.get("id") for x in selected}
@@ -139,7 +192,7 @@ def main():
 
     payload = {
         "updated_at": datetime.now(JST).isoformat(timespec="minutes"),
-        "edition": "AUTO v2",
+        "edition": "AUTO v3",
         "stories": select_brief(stories),
         "errors": errors
     }
