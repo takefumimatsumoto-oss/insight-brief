@@ -54,9 +54,7 @@ def clean(s):
     return re.sub(r"\s+", " ", s).strip()
 
 def parse_feed(raw, src):
-    enc_match = re.search(br'encoding=["\']([^"\']+)["\']', raw[:200], re.I)
-    enc = enc_match.group(1).decode("ascii") if enc_match else "utf-8"
-    root = ET.fromstring(raw.decode(enc, errors="replace"))
+    root = ET.fromstring(raw)
     rows = []
     # RSS
     for item in root.findall(".//item"):
@@ -93,6 +91,27 @@ def parse_feed(raw, src):
         })
     return out
 
+
+def select_brief(stories):
+    buckets = {"DELIVERY": [], "NEWS": [], "AI": []}
+    for s in stories:
+        buckets.setdefault(s.get("category","NEWS"), []).append(s)
+
+    selected = []
+    # 3 delivery, 3 economy/news, 2 AI = 8 stories max
+    for cat, n in [("DELIVERY",3),("NEWS",3),("AI",2)]:
+        selected.extend(buckets.get(cat, [])[:n])
+
+    if len(selected) < 8:
+        seen = {x.get("id") for x in selected}
+        for s in stories:
+            if s.get("id") not in seen:
+                selected.append(s)
+            if len(selected) >= 8:
+                break
+    return selected[:8]
+
+
 def main():
     stories, errors = [], []
     for src in SOURCES:
@@ -103,7 +122,7 @@ def main():
     payload = {
         "updated_at": datetime.now(JST).isoformat(timespec="minutes"),
         "edition": "AUTO v1",
-        "stories": stories,
+        "stories": select_brief(stories),
         "errors": errors
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
